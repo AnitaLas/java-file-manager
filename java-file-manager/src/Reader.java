@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 public class Reader {
 
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader br;
     private String line = "";
 
     Reader(){
@@ -22,8 +22,4 @@ public class Reader {
           throw new RuntimeException(e);
       }
   }
-
-
-
-
 }

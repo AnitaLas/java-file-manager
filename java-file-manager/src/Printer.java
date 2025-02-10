@@ -5,8 +5,13 @@ public class Printer {
     }
 
     protected void startMessage(){
-        System.out.println("TEST 1");
-        System.out.print("res\\");
+        System.out.println("enter path and press enter to open the file");
+        System.out.print("");
+    }
+
+    protected void startMessage2(){
+        System.out.println("type folder name");
+        System.out.print("");
     }
 
     protected void textFileAndFolderMessage(){
