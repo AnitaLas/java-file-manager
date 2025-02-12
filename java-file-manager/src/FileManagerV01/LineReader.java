@@ -14,6 +14,9 @@ public class LineReader {
     }
 
     protected String getLine() {
+        if (this.line == null || this.line.isBlank()) {
+            throw new RuntimeException("Line is null or empty.");
+        }
         return this.line;
     }
 
@@ -21,7 +24,8 @@ public class LineReader {
         try {
             this.line = br.readLine();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            System.err.println("Error reading line.");
         }
     }
 }
