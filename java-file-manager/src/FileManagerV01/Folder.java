@@ -34,7 +34,7 @@ public class Folder implements IFile {
                 System.out.println(file.getName());
             }
         } catch (RuntimeException re) {
-            throw new RuntimeException("\n[F2] Folder not found. Check if path exists. " + re );
+            throw new RuntimeException("\n[F2] Folder not found. Check if path exists. " + re);
         }
     }
 
@@ -59,7 +59,7 @@ public class Folder implements IFile {
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String columnName = "%-40s%10s%30s%30s\n";
-        System.out.printf(columnName, "Name", "DIR or size", "Creation date", "Modyfication date");
+        System.out.printf(columnName, "Name", "DIR or size", "Creation date", "Modification date");
 
         for (File file : files) {
             Path path1 = null;
@@ -76,9 +76,7 @@ public class Folder implements IFile {
                 throw new IOException("\n[F4] File not found. Check if path exists. ");
             } catch (RuntimeException re) {
                 throw new RuntimeException("\n[F5] Folder not found. Check if path exists. ");
-
             }
         }
     }
-
 }

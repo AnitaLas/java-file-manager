@@ -16,56 +16,51 @@ public class FileManager {
 
     protected void runFileManager() {
 
-        try {
-            do {
+        do {
+            try {
                 this.messagePrinter.welcomeMessage();
                 this.messagePrinter.startMessage();
                 this.lineReader.setLine();
 
-                if ((this.lineReader.getLine()).equals("list")){
+                if ((this.lineReader.getLine()).equals("list")) {
                     showFilesSimple();
-                }
-                else if ((this.lineReader.getLine()).equals("details")){
+                } else if ((this.lineReader.getLine()).equals("details")) {
                     showFilesDetails();
-                }
-                else if ((this.lineReader.getLine()).equals("foldertree")){
+                } else if ((this.lineReader.getLine()).equals("foldertree")) {
                     showFilesTree();
-                }
-                else if ((this.lineReader.getLine()).equals("addfolder")){
+                } else if ((this.lineReader.getLine()).equals("addfolder")) {
                     addFolder();
-                }
-                else if ((this.lineReader.getLine()).equals("addfile")){
+                } else if ((this.lineReader.getLine()).equals("addfile")) {
                     addFile();
-                }
-                else {
+                } else {
                     System.out.println("Invalid command");
                 }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
 
-            } while (!(this.lineReader.getLine()).equals("exit"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        } while (!(this.lineReader.getLine()).equals("exit"));
     }
 
-    // to do -> name to change
-    private void setFolder() {
+    private void getFolder() {
         this.folder = new Folder();
         this.messagePrinter.addPathMessage();
         this.lineReader.setLine();
     }
 
     private void showFilesSimple() {
-        setFolder();
+        getFolder();
         this.folder.showFilesSimple(this.lineReader.getLine());
     }
 
     private void showFilesDetails() throws IOException {
-        setFolder();
+        getFolder();
         this.folder.showFilesDetails(this.lineReader.getLine());
     }
 
     private void showFilesTree() {
-        setFolder();
+        getFolder();
         this.folder.showFilesTree(this.lineReader.getLine());
     }
 
