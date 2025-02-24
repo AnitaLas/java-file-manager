@@ -18,49 +18,50 @@ public class Folder implements IFile {
     }
 
     private File[] getListOfFiles(String path) {
-        try {
-            File folder = new File(path);
+        File folder = new File(path);
+
+        if (folder.exists()) {
             return folder.listFiles();
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Folder not found. Check if path exists.");
-            //System.out.println("[E1] Folder not found. Check if path exists.");
+        } else {
+            throw new RuntimeException("\n[F1] Folder not found. Check if path exists.");
         }
     }
 
     protected void showFilesSimple(String path) {
         try {
-            for (File file : getListOfFiles(path)) {
+            File[] files = getListOfFiles(path);
+            for (File file : files) {
                 System.out.println(file.getName());
             }
-        } catch (RuntimeException e) {
-            //throw new RuntimeException("[E3] Folder not found. Check if path exists");
-            System.out.println("Folder not found. Check if path exists.");
+        } catch (RuntimeException re) {
+            throw new RuntimeException("\n[F2] Folder not found. Check if path exists. " + re );
         }
     }
 
     protected void showFilesTree(String path) {
         try {
-            for (File file : getListOfFiles(path)) {
+            File[] files = getListOfFiles(path);
+
+            for (File file : files) {
                 if (file.isDirectory()) {
                     System.out.println(file.getAbsoluteFile());
                     showFilesTree(file.getAbsoluteFile().toString());
                 } else
                     System.out.println(file.getAbsoluteFile());
             }
-        } catch (RuntimeException e) {
-            //throw new RuntimeException("[E3] Folder not found. Check if path exists");
-            System.out.println("Folder not found. Check if path exists.");
+        } catch (RuntimeException re) {
+            throw new RuntimeException("\n[F3] Folder not found. Check if path exists. ");
         }
     }
 
-    protected void showFilesDetails(String path) {
+    protected void showFilesDetails(String path) throws IOException {
+        File[] files = getListOfFiles(path);
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String columnName = "%-40s%10s%30s%30s\n";
         System.out.printf(columnName, "Name", "DIR or size", "Creation date", "Modyfication date");
 
-        for (File file : getListOfFiles(path)) {
-
+        for (File file : files) {
             Path path1 = null;
             try {
                 path1 = Paths.get(file.getAbsolutePath());
@@ -71,12 +72,11 @@ public class Folder implements IFile {
                         df.format(attr.creationTime().toMillis()),
                         df.format(attr.lastModifiedTime().toMillis())
                 );
-            } catch (IOException e) {
-                //throw new IOException("[E2] File not found. Check if path exists");
-                System.out.println("Folder not found. Check if path exists.");
-            } catch (RuntimeException e) {
-                // throw new RuntimeException(e);
-                System.out.println("Folder not found. Check if path exists.");
+            } catch (IOException ioe) {
+                throw new IOException("\n[F4] File not found. Check if path exists. ");
+            } catch (RuntimeException re) {
+                throw new RuntimeException("\n[F5] Folder not found. Check if path exists. ");
+
             }
         }
     }

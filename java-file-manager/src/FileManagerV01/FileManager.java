@@ -22,29 +22,28 @@ public class FileManager {
                 this.messagePrinter.startMessage();
                 this.lineReader.setLine();
 
-                if ((this.lineReader.getLine()).equals("list"))
+                if ((this.lineReader.getLine()).equals("list")){
                     showFilesSimple();
-
-                if ((this.lineReader.getLine()).equals("details"))
+                }
+                else if ((this.lineReader.getLine()).equals("details")){
                     showFilesDetails();
-
-                if ((this.lineReader.getLine()).equals("foldertree"))
+                }
+                else if ((this.lineReader.getLine()).equals("foldertree")){
                     showFilesTree();
-
-                if ((this.lineReader.getLine()).equals("addfolder"))
+                }
+                else if ((this.lineReader.getLine()).equals("addfolder")){
                     addFolder();
-
-                if ((this.lineReader.getLine()).equals("addfile"))
+                }
+                else if ((this.lineReader.getLine()).equals("addfile")){
                     addFile();
-
-            /*else {
-                //to do -> when input is wrong
-                System.out.println("Invalid command");
-            }*/
+                }
+                else {
+                    System.out.println("Invalid command");
+                }
 
             } while (!(this.lineReader.getLine()).equals("exit"));
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -60,7 +59,7 @@ public class FileManager {
         this.folder.showFilesSimple(this.lineReader.getLine());
     }
 
-    private void showFilesDetails() {
+    private void showFilesDetails() throws IOException {
         setFolder();
         this.folder.showFilesDetails(this.lineReader.getLine());
     }

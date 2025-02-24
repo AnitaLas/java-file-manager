@@ -11,7 +11,7 @@ public class TextFile implements IFile {
         try {
             PrintWriter pw = new PrintWriter(new File(reader.getLine()));
         } catch (FileNotFoundException e) {
-            System.out.println("File name not found.");
+            throw new RuntimeException("File name not found." + e);
         }
     }
 }

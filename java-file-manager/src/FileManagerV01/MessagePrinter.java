@@ -7,7 +7,7 @@ public class MessagePrinter {
     }
 
     protected void startMessage() {
-        System.out.println("Select option (list,details,foldertree,addfolder,addfile,exit)");
+        System.out.println("Select option (list, details, foldertree, addfolder, addfile, exit)");
     }
 
     protected void addFolderMessage() {
