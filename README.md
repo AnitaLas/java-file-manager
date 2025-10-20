@@ -1,4 +1,4 @@
-# 🗂️ Java File Manager
+# 🗂️ File Manager
 
 All file and folder information is **displayed in the console**.
 
